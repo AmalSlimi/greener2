@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Search{% endblock %}
+
+{% block body %}
+    <h1 style="text-align: center;">Search Posts</h1>
+    <div style="width: 300px; margin: 0 auto;">
+        <form action="{{ path('app_search_posts') }}" method="GET" style="display: flex; align-items: center; border: 1px solid #ccc; border-radius: 4px; overflow: hidden;">
+            <input type="text" name="searchTerm" placeholder="Search..." style="flex: 1; padding: 8px;">
+            <button type="submit" style="background-color: #3498db; color: #fff; padding: 8px 12px; border: none; cursor: pointer;">Search</button>
+        </form>
+    </div>
+{% endblock %}

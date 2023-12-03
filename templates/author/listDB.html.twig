@@ -1,0 +1,18 @@
+<table border=1>
+<tr>
+<th> Name</th>
+<th>Email </th>
+<th>Details</th>
+
+
+
+</tr>
+{% for a in authors %}
+<tr>
+    <td>{{ a.username }} </td>
+    <td>{{ a.email }} </td>
+    <td><a href="{{path('author_getOne',{id: a.id})}}">Details</a></td>
+    <td><a href="{{path('author_updateDB',{id: a.id})}}">Edit</a></td>
+    <td><a href="{{path('author_deleteDB',{id: a.id})}}">Delete</a></td>
+    </tr>
+{% endfor %}

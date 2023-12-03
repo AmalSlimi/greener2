@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Post Comment Statistics{% endblock %}
+
+{% block body %}
+    <h1>Post Comment Statistics</h1>
+
+    <canvas id="postCommentChart" width="800" height="400"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const postCommentCounts = {{ postCommentCounts|json_encode|raw }};
+
+        // create datasets for Chart.js
+        const postTitles = postCommentCounts.map(post => post.titre);
+        const commentCounts = postCommentCounts.map(post => post.commentCount);
+
+        // configuration
+        const ctx = document.getElementById('postCommentChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: postTitles,
+                datasets: [{
+                    label: 'Number of Comments',
+                    data: commentCounts,
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)', 
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    
+<a href="{{ path('post_comment_pie_chart') }}" style="display: inline-block; padding: 8px 16px; margin-top: 20px; background-color: #9b59b6; color: #fff; text-decoration: none; border-radius: 4px; font-size: 14px; transition: background-color 0.3s ease; text-align: center; width: fit-content; margin: 20px auto;">Pie Chart</a>
+
+{% endblock %}

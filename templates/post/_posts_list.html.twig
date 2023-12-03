@@ -1,0 +1,24 @@
+{# post/_posts_list.html.twig #}
+
+{% if posts is not empty %}
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Content</th>
+                <!-- Add more headers as needed -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in posts %}
+                <tr>
+                    <td>{{ post.titre }}</td>
+                    <td>{{ post.contenu }}</td>
+                    <!-- Add more columns as needed -->
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No matching posts found.</p>
+{% endif %}

@@ -1,0 +1,38 @@
+
+
+Le nombre des auteurs est {{authors | length}}
+<br>
+
+{% if authors is empty %}
+    No authors found
+{% else %}
+    {% set nb = 0 %}
+    <table border=1>
+        <tr>
+            <th> ID</th>
+            <th> Name</th>
+            <th>Email </th>
+            <th># Books </th>
+            <th> Picture</th>
+            <th>Details</th>
+
+        </tr>
+        {% for author in authors %}
+            <tr>
+                <td> {{author.id}} </td>
+                <td>{{author.username | capitalize}}</td>
+                <td>{{author.email}}</td>
+                <td>{{author.nb_books}}</td>
+                <td><img src="{{asset(author.picture)}}"
+                         alt=""
+                         width=100></td>
+                {% set nb = nb + author.nb_books %}
+                <td><a href="{{path('app_details', {id: author.id})}}">Details</a></td>
+            </tr>
+
+        {% endfor %}
+
+
+    </table>
+{% endif %}
+Le nombre total des livres = {{nb}}

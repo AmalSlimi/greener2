@@ -1,0 +1,27 @@
+{# allPosts.html.twig #}
+
+<div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search">
+</div>
+<div id="searchResults">
+    {% include 'post/index.html.twig' %}
+</div>
+
+<script>
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+
+    function performSearch() {
+        const searchTerm = searchInput.value;
+
+        fetch(`/post/all?searchTerm=${searchTerm}`)
+            .then(response => response.text())
+            .then(data => {
+                searchResults.innerHTML = data;
+            });
+    }
+
+    searchInput.addEventListener('input', () => {
+        performSearch();
+    });
+</script>

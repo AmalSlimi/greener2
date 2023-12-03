@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block body %}
+    <h1>Search Results for "{{ searchTerm }}"</h1>
+    
+     <a href="{{ path('app_search') }}" style="text-decoration: none; color: #3498db;">Back to Search</a>
+
+    {% if posts is not empty %}
+        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            <thead>
+                <tr>
+                    <th style="border-bottom: 1px solid #ddd; padding: 8px;">Titre</th>
+                    <th style="border-bottom: 1px solid #ddd; padding: 8px;">Type de contenu</th>
+                    <th style="border-bottom: 1px solid #ddd; padding: 8px;">Contenu</th>
+                    <th style="border-bottom: 1px solid #ddd; padding: 8px;">Date</th>
+                    <th style="border-bottom: 1px solid #ddd; padding: 8px;">Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in posts %}
+                    <tr>
+                        <td style="border-bottom: 1px solid #ddd; padding: 8px;">{{ post.titre|replace({(searchTerm): '<span style="background-color: lightblue;">' ~ searchTerm ~ '</span>'})|raw }}</td>
+                        <td style="border-bottom: 1px solid #ddd; padding: 8px;">{{ post.typedecontenu|replace({(searchTerm): '<span style="background-color: lightblue;">' ~ searchTerm ~ '</span>'})|raw }}</td>
+                        <td style="border-bottom: 1px solid #ddd; padding: 8px;">{{ post.contenu|replace({(searchTerm): '<span style="background-color: lightblue;">' ~ searchTerm ~ '</span>'})|raw }}</td>
+                        <td style="border-bottom: 1px solid #ddd; padding: 8px;">{{ post.date ? post.date|date('Y-m-d') : '' }}</td>
+                        <td style="border-bottom: 1px solid #ddd; padding: 8px;">{{ post.image|replace({(searchTerm): '<span style="background-color: lightblue;">' ~ searchTerm ~ '</span>'})|raw }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No posts found for "{{ searchTerm }}".</p>
+    {% endif %}
+{% endblock %}

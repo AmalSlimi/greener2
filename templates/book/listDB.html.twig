@@ -1,0 +1,35 @@
+<table border=1>
+<tr>
+<th> title</th>
+<th> Publication Date</th>
+<th> Published</th>
+<th> Category</th>
+<th> Author</th>
+<th> Action</th>
+
+
+
+
+
+
+</tr>
+{% for a in books %}
+<tr>
+    <td>{{ a.title }} </td>
+    <td>{{ a.publicationDate | date }} </td>
+    {% if a.published == 0 %}
+    <td>{{ "no" }} </td>
+    {% else %}
+    <td>{{ "yes" }} </td>
+    {% endif %}
+    <td>{{ a.category }} </td>
+    <td>{{ a.author.username }} </td>
+    <td><a href="{{path('book_deleteDB',{ref: a.ref})}}">Delete</a></td>
+    <td><a href="{{path('book_updateDB',{ref: a.ref})}}">Update</a></td>
+
+
+
+    
+    
+    </tr>
+{% endfor %}
