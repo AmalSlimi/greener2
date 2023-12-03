@@ -2,21 +2,21 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User
 {
     #[ORM\Id]
-
+    #[ORM\GeneratedValue]
     #[ORM\Column(type: "integer")]
     private ?int $idUser = null;
 
-    /*#[ORM\OneToMany(mappedBy: 'user' , targetEntity: Commentaires::class,cascade:["remove"],orphanRemoval:true )]
-    private Collection $commentaires;*/
+   /* #[ORM\OneToMany(mappedBy: 'user', targetEntity: Panier::class,cascade:["remove"],orphanRemoval:true)]
+private Collection $paniers; */
 
     #[ORM\Column(length: 20, nullable: true)]
     private ?string $nom = null;
@@ -50,7 +50,7 @@ class User
 
     public function __construct()
     {
-        $this->commentaires = new ArrayCollection();
+        $this->panier = new ArrayCollection();
     }
 
     public function getIdUser(): ?int
@@ -182,34 +182,34 @@ class User
 
         return $this;
     }
-
+  
     /**
-     * @return Collection<int, Commentaires>
+     * @return Collection<int, Panier>
      */
-    /*public function getCommentaires(): Collection
+    public function getPanier(): Collection
     {
-        return $this->commentaires;
+        return $this->paniers;
     }
-
-    public function addCommentaire(Commentaires $commentaire): static
+     /*
+    public function addPanier(Panier $panier): static
     {
-        if (!$this->commentaires->contains($commentaire)) {
-            $this->commentaires->add($commentaire);
-            $commentaire->setUser($this);
+        if (!$this->paniers->contains($panier)) {
+            $this->paniers->add($panier);
+            $panier->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeCommentaire(Commentaires $commentaire): static
+    public function removePanier(Panier $panier): static
     {
-        if ($this->commentaires->removeElement($commentaire)) {
+        if ($this->paniers->removeElement($panier)) {
             // set the owning side to null (unless already changed)
-            if ($commentaire->getUser() === $this) {
-                $commentaire->setUser(null);
+            if ($panier->getUser() === $this) {
+                $panier->setUser(null);
             }
         }
 
         return $this;
-    }*/
+    }  */
 }
