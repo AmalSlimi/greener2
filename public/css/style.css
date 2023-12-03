@@ -90,7 +90,7 @@ img {
  z-index: 3;
  cursor: pointer;
  svg {
-  width: 16px;
+  width: 24px;
   flex-shrink: 0;
   fill: #ffce45;
   stroke: #ffce45;
@@ -252,7 +252,7 @@ body.light-mode .video-bg:before {
  margin-left: auto;
  flex-shrink: 0;
  svg {
-  width: 16px;
+  width: 22px;
   color: #f9fafb;
   flex-shrink: 0;
  }
@@ -353,7 +353,7 @@ body.light-mode .video-bg:before {
   }
  }
  svg {
-  width: 12px;
+  width: 16px;
   margin-right: 8px;
  }
 }
@@ -469,7 +469,7 @@ body.light-mode .video-bg:before {
  align-items: center;
  margin: 0;
  svg {
-  width: 16px;
+  width: 28px;
   margin-right: 14px;
  }
 }

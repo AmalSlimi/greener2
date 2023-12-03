@@ -2,8 +2,11 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\PanierRepository;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PanierRepository::class)]
 class Panier
@@ -11,6 +14,7 @@ class Panier
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: "integer")]
+    
     private ?int $panierid = null;
 
     #[ORM\Column(type: "integer")]
@@ -18,6 +22,14 @@ class Panier
 
     #[ORM\Column(type: "integer")]
     private ?int $produitid = null;
+
+    #[ORM\OneToMany(mappedBy: 'panier', targetEntity: Commande::class,cascade:["remove"],orphanRemoval:true)]
+    private Collection $commande;
+/*
+    #[ORM\ManyToOne(inversedBy: 'paniers', targetEntity: User::class)]
+    #[ORM\JoinColumn(name: 'clientid', referencedColumnName:'id_user')]
+    
+    private ?User $user = null;  */
 
     #[ORM\Column(type: "integer")]
     private ?int $quantite = null;
@@ -29,7 +41,13 @@ class Panier
     private ?float $total = null;
 
     #[ORM\Column(length: 255)] 
+    #[Assert\NotBlank(message: 'you should enter a valid name')]
     private ?string $nomproduit = null;
+
+    public function __construct()
+    {
+        $this->commande = new ArrayCollection();
+    }
 
     public function getPanierid(): ?int
     {
@@ -108,5 +126,44 @@ class Panier
         return $this;
     }
 
+    /**
+     * @return Collection<int, Commande>
+     */
+    public function getCommande(): Collection
+    {
+        return $this->commande;
+    }
 
-}
+    public function addCommande(Commande $commande): static
+    {
+        if (!$this->commande->contains($commande)) {
+            $this->commande->add($commande);
+            $commande->setPanier($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): static
+    {
+        if ($this->commande->removeElement($commande)) {
+            // set the owning side to null (unless already changed)
+            if ($commande->getPanier() === $this) {
+                $commande->setPanier(null);
+            }
+        }
+
+        return $this;
+    }
+    /*
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }*/ }

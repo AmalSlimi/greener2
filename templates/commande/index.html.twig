@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande index{% endblock %}
+
+{% block body %}
+    <h1>Commande</h1>
+    {% if app.session.get('special_order_message') is not null %}
+        <div class="alert alert-success">
+            {{ app.session.get('special_order_message') }}
+        </div>
+        {# Effacer le message de la session après l'avoir affiché #}
+        {% set _ = app.session.remove('special_order_message') %}
+    {% endif %}
+  
+
+    {% set successMessages = app.flashes('success') %}
+{% set errorMessages = app.flashes('error') %}
+{% set warningMessages = app.flashes('warning') %}
+
+{% if successMessages|default([]) is not empty %}
+    <div class="alert alert-success">
+        {{ successMessages|default([])[0] }}
+    </div>
+{% endif %}
+
+{% if errorMessages|default([]) is not empty %}
+    <div class="alert alert-danger">
+        {{ errorMessages|default([])[0] }}
+    </div>
+{% endif %}
+
+{% if warningMessages|default([]) is not empty %}
+    <div class="alert alert-warning">
+        {{ warningMessages|default([])[0] }}
+    </div>
+{% endif %}
+
+<div  style="width: 300px; margin: 0 auto;">
+				 <form action="{{ path('app_chercher_commandes') }}" method="GET" style="display: flex; align-items: center; border: 1px solid #ccc; border-radius: 4px; overflow: hidden;">
+            <input type="text" name="searchTerm" placeholder="Search..." style="flex: 1; padding: 8px;">
+            <button type="submit" style="background-color: #3498db; color: #fff; padding: 8px 12px; border: none; cursor: pointer;">Search</button>
+        </form>
+    		</div>
+
+    
+
+    <table class="table">
+        <thead>
+            <tr>
+                {# <th>CommandeId</th>
+                <th>ClientId</th>#}
+                <th>DateCommande</th>
+                <th>MontantTotal</th>
+                <th>AdresseLivraison</th>
+                <th>DateLivraison</th>
+                <th>ModePaiement</th>
+                {#<th>Panierid</th>#}
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+            <tr>
+                 {#<td>{{ commande.commandeId }}</td>
+                <td>{{ commande.clientId }}</td>#}
+                <td>{{ commande.dateCommande ? commande.dateCommande|date('Y-m-d') : '' }}</td>
+                <td>{{ commande.montantTotal }}</td>
+                <td>{{ commande.adresseLivraison }}</td>
+                <td>{{ commande.dateLivraison ? commande.dateLivraison|date('Y-m-d') : '' }}</td>
+                <td>{{ commande.modePaiement }}</td>
+                {#<td>{{ commande.panierid }}</td>#}
+                <td>
+                    <a href="{{ path('app_commande_show', {'commandeId': commande.commandeId}) }}">show</a>
+                    <a href="{{ path('app_commande_edit', {'commandeId': commande.commandeId}) }}">edit</a>
+                     <!-- Ajout du formulaire pour le code promo -->
+                    <form action="{{ path('app_apply_promo', {'commandeId': commande.commandeId}) }}" method="post">
+                        <label for="code_promo">Code Promo:</label>
+                        <input type="text" id="code_promo" name="code_promo">
+                        <button type="submit">Appliquer</button>
+                    </form>
+                    
+                    {% if commande.modePaiement in ['carte', 'card'] %}
+                        <a href="{{ path('stripe_checkout', {'commandeId': commande.commandeId}) }}">pay online</a>
+                    {% else %}
+                        <a href="#" onclick="showAlert()">pay online</a>
+                    {% endif %}
+                   
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+    {% if panier is defined %}
+        <a href="{{ path('app_commande_new', {'panierid': panier.panierid}) }}">Create new</a>
+    {% endif %}
+    <script>
+        function showAlert() {
+            alert("Veuillez modifier le mode de paiement avant de payer.");
+        }
+
+       
+    </script>
+{% endblock %}

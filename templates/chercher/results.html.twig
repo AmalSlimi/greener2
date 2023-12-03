@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block body %}
+    <h1>Search Results for "{{ searchTerm }}"</h1>
+    
+     <a href="{{ path('app_chercher') }}" style="text-decoration: none; color: #3498db;">Back to Search</a>
+
+    {% if commandes is not empty %}
+        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            <thead>
+                <tr>
+                    <th style="border-bottom: 1px solid #ddd; padding: 8px;">DateCommande</th>
+                    <th style="border-bottom: 1px solid #ddd; padding: 8px;">MontantTotal</th>
+                    <th style="border-bottom: 1px solid #ddd; padding: 8px;">AdresseLivraison</th>
+                    <th style="border-bottom: 1px solid #ddd; padding: 8px;">DateLivraison</th>
+                    <th style="border-bottom: 1px solid #ddd; padding: 8px;">ModePaiement</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for commande in commandes %}
+                    <tr>
+                        <td style="border-bottom: 1px solid #ddd; padding: 8px;">{{ commande.dateCommande ? commande.dateCommande|date('Y-m-d') : '' }}</td>
+                        <td style="border-bottom: 1px solid #ddd; padding: 8px;">{{ commande.montantTotal|replace({(searchTerm): '<span style="background-color: lightblue;">' ~ searchTerm ~ '</span>'})|raw }}</td>
+                        <td style="border-bottom: 1px solid #ddd; padding: 8px;">{{ commande.adresseLivraison|replace({(searchTerm): '<span style="background-color: lightblue;">' ~ searchTerm ~ '</span>'})|raw }}</td>
+                        <td style="border-bottom: 1px solid #ddd; padding: 8px;">{{ commande.dateLivraison ? commande.dateLivraison|date('Y-m-d') : '' }}</td>
+                        <td style="border-bottom: 1px solid #ddd; padding: 8px;">{{ commande.modePaiement|replace({(searchTerm): '<span style="background-color: lightblue;">' ~ searchTerm ~ '</span>'})|raw }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No commande found for "{{ searchTerm }}".</p>
+    {% endif %}
+{% endblock %}

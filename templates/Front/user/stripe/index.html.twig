@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Checkout with Stripe{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1>Checkout with Stripe 🌐💳</h1>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <h2>Order Summary</h2>
+            <p>Product: Static Product Name</p>
+            <p>Total Amount: ${{ commande.getMontantTotal() }}</p>
+        </div>
+        <div class="col-md-6">
+            <h2>Payment Details</h2>
+            <div id="stripe-checkout"></div>
+        </div>
+    </div>
+</div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    var stripe = Stripe('pk_test_51O4X5XCZicFmO9OlJS5yjZ9LhBEOAKt28ROnDYVTz1fnJkUkyORJe7Uzmtl0Xo1ttv0dJIVduvoQ5zlAqyxLP5Rp00yBcHabL2'); // Replace with your actual public key
+
+    // Create a Checkout Session when the button is clicked
+    var checkoutButton = document.getElementById('stripe-checkout');
+    stripe.redirectToCheckout({
+        sessionId: '{{ stripeSessionId }}'
+    }).then(function (result) {
+        // If `redirectToCheckout` fails due to a browser or network
+        // error, you should display the localized error message to your customer
+        if (result.error) {
+            alert(result.error.message);
+        }
+    });
+</script>
+
+{% endblock %}
