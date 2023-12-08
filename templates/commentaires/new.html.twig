@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Commentaires{% endblock %}
+{% block  crud %}
+	<div class="main-header">
+		<a class="menu-link-main" href="#">Acceuil admin</a>
+			<div class="header-menu">
+				<a class="main-header-link" href="{{ path('app_post_new') }}">Ajouter</a>
+				<a class="main-header-link" href="{{ path('app_post_index') }}">Afficher</a>
+				<a class="main-header-link" href="{{ path('app_commentaires_index') }}">Commentaires</a>
+				<a class="main-header-link" href="{{ path('app_search') }}">Rechercher</a>
+			</div>
+	</div>
+{% endblock %}
+{% block body %}
+    <h1>Create new Commentaires</h1>
+
+    {{ include('commentaires/_form.html.twig') }}
+
+    <div id="comment-status-message">
+        {% if statut == 'not_approved' %}
+            <p>This comment contains inappropriate content and cannot be approved. Please modify it.</p>
+        {% elseif statut == 'approved' %}
+            <p>Your comment has been submitted and is awaiting approval.</p>
+        {% endif %}
+    </div>
+
+    <a href="{{ path('app_commentaires_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categorie index{% endblock %}
+
+{% block body %}
+    <h1>Categorie index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Libellet</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for C in Categories %}
+            <tr>
+                <td>{{C.libellet}}</td>
+                <td>
+                    <a href="{{ path('app_categorie_edit', {'idCategorie': C.id}) }}" style="display: inline-block; padding: 8px 16px; border: none; border-radius: 4px; transition: all 0.3s ease; text-decoration: none; color: #fff; background-color: #3498db; margin-right: 5px;">Edit/Delete</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="15">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <table class="table">
+        <tr>
+            <td><a href="{{ path('app_categorie_new') }}" style="display: inline-block; padding: 8px 16px; border: none; border-radius: 4px; transition: all 0.3s ease; text-decoration: none; color: #fff; background-color: #3498db; margin-right: 5px;">Create Categorie</a></td>
+        </tr>
+    </table>
+    
+{% endblock %}

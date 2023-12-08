@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block vid%}
+	<div class="video-bg">
+		<video width="320" height="240" autoplay loop muted>
+			<source src="{{ asset ('images/back.mp4')}}" type="video/mp4">
+			Your browser does not support the video tag.
+		</video>
+	</div>
+{% endblock %}
+{%   block up%}
+
+
+{% endblock%}
+{% block sidebar %}
+{% endblock%}
+{% block  crud %}
+{% endblock%}
+
+
+{% block title %}Reset your password
+{% endblock %}
+
+
+{% block body %}
+	{% for flash_error in app.flashes('reset_password_error') %}
+		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+	{% endfor %}
+	<h1>Reset your password</h1>
+
+	<form method="post" action="{{ path('app_forgot_password_request')}}">
+		<div>
+			<small>
+				Enter your email address and we will send you a
+																											                link to reset your password.
+			</small>
+		</div>
+		<input type="text" name="mail" placeholder="exmple@aaa.org"/>
+		<button type="submit">envoyer</button>
+	</form>
+
+{% endblock %}

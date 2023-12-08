@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block body %}
+    <h1>Search Results for "{{ searchTerm }}"</h1>
+    
+     <a href="{{ path('app_search1') }}" style="text-decoration: none; color: #3498db;">Back to Search</a>
+
+    {% if evenements is not empty %}
+        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            <thead>
+                <tr>
+                    <th style="border-bottom: 1px solid #ddd; padding: 8px;">Titre</th>
+                    <th style="border-bottom: 1px solid #ddd; padding: 8px;">Date</th>
+                    <th style="border-bottom: 1px solid #ddd; padding: 8px;">Image</th>
+                    <th style="border-bottom: 1px solid #ddd; padding: 8px;">Lieu</th>
+                    <th style="border-bottom: 1px solid #ddd; padding: 8px;">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for evenement in evenements %}
+                    <tr>
+                        <td style="border-bottom: 1px solid #ddd; padding: 8px;">{{ evenement.titreEvenement|replace({(searchTerm): '<span style="background-color: red;">' ~ searchTerm ~ '</span>'})|raw }}</td>
+                        <td style="border-bottom: 1px solid #ddd; padding: 8px;">{{ evenement.dateEvenementt ? evenement.dateEvenementt|date('Y-m-d') : '' }}</td>
+                        <td style="border-bottom: 1px solid #ddd; padding: 8px;">{{ evenement.imageEvenement|replace({(searchTerm): '<span style="background-color: red;">' ~ searchTerm ~ '</span>'})|raw }}</td>
+                        <td style="border-bottom: 1px solid #ddd; padding: 8px;">{{ evenement.lieuEvenement|replace({(searchTerm): '<span style="background-color: red;">' ~ searchTerm ~ '</span>'})|raw }}</td>
+                        <td style="border-bottom: 1px solid #ddd; padding: 8px;">{{ evenement.descriptionEvenement|replace({(searchTerm): '<span style="background-color: red;">' ~ searchTerm ~ '</span>'})|raw }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No evenements found for "{{ searchTerm }}".</p>
+    {% endif %}
+{%endblock%}

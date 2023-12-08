@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Energie index{% endblock %}
+
+{% block body %}
+    <h1>Energie index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Libellet</th>
+                <th>Pollution Par Kw</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for E in Energies %}
+            <tr>
+                <td>{{E.libelletEnergie}}</td>
+                <td>{{E.pollutionParKw}}</td>
+                <td>
+                    <a href="{{ path('app_energie_edit', {'idEnergie': E.idEnergie}) }}"style="display: inline-block; padding: 8px 16px; border: none; border-radius: 4px; transition: all 0.3s ease; text-decoration: none; color: #fff; background-color: #3498db; margin-right: 5px;">Edit/Delete</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="15">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <table>
+        <tr>
+            <td><a href="{{ path('app_energie_new') }}"style="display: inline-block; padding: 8px 16px; border: none; border-radius: 4px; transition: all 0.3s ease; text-decoration: none; color: #fff; background-color: #3498db; margin-right: 5px;">Create new</a></td>
+        </tr>
+    </table>
+    
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Entreprise
+{% endblock %}
+{%   block up%}
+	<div class="header-menu">
+		<a class="menu-link is-active" href="{{ path('app_entreprise_index') }}">Acceuil</a>
+
+	</div>
+{% endblock %}
+{% block  crud %}
+	<div class="main-header">
+		<a class="menu-link-main" href="{{ path('app_entreprise_index') }}">Acceuil admin</a>
+		<div class="header-menu">
+			<a class="main-header-link" href="{{ path('app_entreprise_new') }}">Ajouter</a>
+			<a class="main-header-link" href="{{ path('app_entreprise_index') }}">Afficher</a>
+		</div>
+	</div>
+{% endblock %}
+
+{% block body %}
+	<h1>Create new Entreprise</h1>
+
+	{{ form_start(form,{'attr': {'novalidate': 'novalidate'}})}}
+	<table>
+		<tr>
+			<td>{{ form_label(form.nom, "Nom") }}</td>
+			<td>{{ form_widget(form.nom) }}</td>
+			<td>{{ form_errors(form.nom) }}</td>
+		</tr>
+		<tr>
+			<td>{{ form_label(form.prenom, "Prénom") }}</td>
+			<td>{{ form_widget(form.prenom) }}</td>
+			<td>{{ form_errors(form.prenom) }}</td>
+		</tr>
+		<tr>
+			<td>{{ form_label(form.pdp, "Photo de profil") }}</td>
+			<td>{{ form_widget(form.pdp) }}</td>
+			<td>{{ form_errors(form.pdp) }}</td>
+		</tr>
+		<tr>
+			<td>{{ form_label(form.num, "Numéro") }}</td>
+			<td>{{ form_widget(form.num) }}</td>
+			<td>{{ form_errors(form.num) }}</td>
+		</tr>
+		<tr>
+			<td>{{ form_label(form.mail, "Email") }}</td>
+			<td>{{ form_widget(form.mail) }}</td>
+			<td>{{ form_errors(form.mail) }}</td>
+		</tr>
+		<tr>
+			<td>{{ form_label(form.mdp1, "Mot de passe") }}</td>
+			<td>{{ form_widget(form.mdp1) }}</td>
+			<td>{{ form_errors(form.mdp1) }}</td>
+		</tr>
+		<tr>
+			<td>{{ form_label(form.role, "Rôle") }}</td>
+			<td>{{ form_widget(form.role) }}</td>
+			<td>{{ form_errors(form.role) }}</td>
+		</tr>
+		<tr>
+			<td>{{ form_label(form.adresse, "Adresse") }}</td>
+			<td>{{ form_widget(form.adresse) }}</td>
+			<td>{{ form_errors(form.adresse) }}</td>
+		</tr>
+		<tr>
+			<td>{{ form_label(form.genre, "Genre") }}</td>
+			<td>{{ form_widget(form.genre) }}</td>
+			<td>{{ form_errors(form.genre) }}</td>
+		</tr>
+		<tr>
+			<button type="submit" class="btn">Save</button>
+		</tr>
+	</table>
+
+	{{ form_end(form) }}
+
+	<button>
+
+		<a href="{{ path('app_entreprise_index') }}">back to list</a>
+	</button>
+
+{% endblock %}

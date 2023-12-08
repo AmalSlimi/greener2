@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index
+{% endblock %}
+
+{% block body %}
+	<h1>User index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Prenom</th>
+				<th>Num</th>
+				<th>Mail</th>
+				<th>Mdp1</th>
+				<th> pdp</th>
+				<th>actions</th>
+				<th>actions</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in users %}
+				<tr>
+					<td>{{ user.nom }}</td>
+					<td>{{ user.prenom }}</td>
+					<td>{{ user.num }}</td>
+					<td>{{ user.mail }}</td>
+					<td>{{ user.mdp1 }}</td>
+					<td>
+                        {% if user.pdp is not empty %}
+                        <img src="{{ asset('images/' ~ user.pdp) }}" alt="Post Image" style="max-width: 100px; height: auto;">
+                        {% else %}
+                        No Image
+                        {% endif %}
+                        </td>
+					<td>
+						<button class="btn">
+							<a href="{{ path('app_user_delete', {'id': user.id}) }}">supprimer</a>
+						</button>
+					</td>
+					<td>
+						<button class="btn">
+							<a href="{{ path('app_user_show', {'id': user.id}) }}">details</a>
+						</button>
+					</td>
+					<td>
+						<button class="btn">
+							<a href="{{ path('app_user_edit', {'id': user.id}) }}">editer</a>
+						</button>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="12">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<button class="btn">
+		<a href="{{ path('app_user_new') }}">Create new</a>
+	</button>
+	<button class="btn">
+		<a href="{{ path('app_cnx') }}">deconnecter</a>
+	</button>
+{% endblock %}

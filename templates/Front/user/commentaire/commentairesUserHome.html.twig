@@ -1,0 +1,169 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}mon profile {% endblock %}
+
+
+{% block sidebar %}
+
+	<div class="wrapper">
+		<div class="left-side">
+			<div class="side-wrapper">
+				<div class="side-title">Acceuil Initiale</div>
+				<div class="side-menu">
+
+
+					<a href="{{ path('app_user_profile', {'id': 1}) }}">
+						<svg viewbox="0 0 488.932 488.932" fill="currentColor">
+							<path d="M243.158 61.361v-57.6c0-3.2 4-4.9 6.7-2.9l118.4 87c2 1.5 2 4.4 0 5.9l-118.4 87c-2.7 2-6.7.2-6.7-2.9v-57.5c-87.8 1.4-158.1 76-152.1 165.4 5.1 76.8 67.7 139.1 144.5 144 81.4 5.2 150.6-53 163-129.9 2.3-14.3 14.7-24.7 29.2-24.7 17.9 0 31.8 15.9 29 33.5-17.4 109.7-118.5 192-235.7 178.9-98-11-176.7-89.4-187.8-187.4-14.7-128.2 84.9-237.4 209.9-238.8z"/>
+						</svg>
+						mon profile
+						<span class="notification-number updates">3</span>
+					</a>
+				</div>
+			</div>
+			<div class="side-wrapper">
+				<div class="side-title">les services</div>
+				<div class="side-menu">
+
+					<a href="{{ path('app_panier_user') }}">
+						<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20 2H4c-1 0-2
+                                 .9-2 2v3.01c0 .72.43 1.34 1 1.69V20c0 1.1 1.1 2 2 2h14c.9 0 2-.9 2-2V8.7c.57-.35 1-.97 1-1.69V4c0-1.1-1-2-2-2zm-5 12H9v-2h6v2zm5-7H4V4l16-.02V7z"/></svg>
+						Mes commandes
+					</a>
+					<a href="{{ path('app_produit_index') }}">
+						<svg viewbox="0 0 512 512" fill="currentColor">
+							<circle cx="295.099" cy="327.254" r="110.96" transform="rotate(-45 295.062 327.332)"/>
+							<path d="M471.854 338.281V163.146H296.72v41.169a123.1 123.1 0 01121.339 122.939c0 3.717-.176 7.393-.5 11.027zM172.14 327.254a123.16 123.16 0 01100.59-120.915L195.082 73.786 40.146 338.281H172.64c-.325-3.634-.5-7.31-.5-11.027z"/>
+						</svg>
+						les produits
+					</a>
+					<a href="#">
+						<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"/><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 
+                                14h-3v3h-2v-3H8v-2h3v-3h2v3h3v2zm-3-7V3.5L18.5 9H13z"/></svg>
+						reclamation
+					</a>
+					<a href="{{ path('app_evenement_user') }}">
+						<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"/><path d="M16.53 11.06L15.47 10l-4.88 4.88-2.12-2.12-1.06 1.06L10.59 17l5.94-5.94zM19
+                                 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+						Evenments
+					</a>
+
+					<a href="{{path('app_post_user')}}">
+						<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+                                <path d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M2 6H0v5h.01L0 20c0 1.1.9 2 2 2h18v-2H2V6zm20-2h-8l-2-2H6c-1.1 0-1.99.9-1.99 2L4 16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM7 15l4.5-6 3.5 4.51 2.5-3.01L21 15H7z"/>
+                                </svg>
+						Greener media
+					</a>
+
+                    <a href="{{path('app_investissement_user')}}">
+						<svg viewbox="0 0 512 512" fill="currentColor">
+									<path d="M0 331v112.295a14.996 14.996 0 007.559 13.023L106 512V391L0 331zM136 391v121l105-60V331zM271 331v121l105 60V391zM406 391v121l98.441-55.682A14.995 14.995 0 00512 443.296V331l-106 60zM391 241l-115.754 57.876L391 365.026l116.754-66.15zM262.709 1.583a15.006 15.006 0 00-13.418 0L140.246 57.876 256 124.026l115.754-66.151L262.709 1.583zM136 90v124.955l105 52.5V150zM121 241L4.246 298.876 121 365.026l115.754-66.15zM271 150v117.455l105-52.5V90z"/>
+								</svg>
+						les investissements
+					</a>
+				</div>
+			</div>
+
+
+		</div>
+	{% endblock %}
+	{% block vid%}
+		<div class="video-bg">
+			<video width="320" height="240" autoplay loop muted>
+				<source src="{{ asset ('images/back.mp4')}}" type="video/mp4">
+				Your browser does not support the video tag.
+			</video>
+		</div>
+	{% endblock %}
+	{% block  crud %}
+					<div class="main-header">
+						<a class="menu-link-main" href="#">Acceuil admin</a>
+						<div class="header-menu">
+							
+							<a class="main-header-link" href="{{path('app_post_user')}}">Afficher</a>
+							<a class="main-header-link" href="{{ path('app_search1') }}">Rechercher</a> 
+							
+						</div>
+					</div>
+				{% endblock %}
+
+	{% block body %}
+    <style>
+        /* Table Styles */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .table th,
+        .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: #f2f2f2;
+        }
+
+        .table td a {
+            margin-right: 5px;
+        }
+
+        .table td:last-child a {
+            margin-right: 0;
+        }
+
+        /* Empty Records Message */
+        .empty-record {
+            font-style: italic;
+            color: #888;
+        }
+
+        /* Create New Link */
+        .create-new {
+            display: block;
+            margin-top: 20px;
+        }
+    </style>
+
+    <h1>Commentaires </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                {#<th>IdCommentaire</th>
+                <th>IdUser</th>#}
+                <th>IdPost</th>
+                <th>Contenu</th>
+                <th>Statut</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for commentaire in commentaires %}
+                <tr>
+                    {#<td>{{ commentaire.idCommentaire }}</td>
+                    <td>{{ commentaire.idUser }}</td>#}
+                    <td>{{ commentaire.idPost }}</td>
+                    <td>{{ commentaire.contenu }}</td>
+                    <td>{{ commentaire.statut }}</td>
+                    <td>
+                        <a href="{{ path('app_commentaires_show1', {'idCommentaire': commentaire.idCommentaire}) }}">show</a>
+                        <a href="{{ path('app_commentaires_edit1', {'idCommentaire': commentaire.idCommentaire}) }}">edit/delete </a>
+                        
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6" class="empty-record">No records found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+   {# <a href="{{ path('app_commentaires_new1') }}" class="create-new">Create new</a>#}
+{% endblock %}
+	

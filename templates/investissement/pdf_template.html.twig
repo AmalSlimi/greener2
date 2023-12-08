@@ -1,0 +1,139 @@
+{# templates/evenement/pdf_template.html.twig
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des investissements</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            margin-bottom: 20px;
+        }
+        /* Add more styling as needed */
+    </style>
+</head>
+<body>
+    <table border="1" class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Entreprise Email</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for inves in evenements %}
+                    <tr>
+                        <td>{{ evenement.id }}</td>
+                        <td>{{ evenement.titreEvenement }}</td>
+                        <td>{{ evenement.entreprise.email }}</td>
+                        <td>{{ evenement.dateEvenementt ? evenement.dateEvenementt|date('Y-m-d') : '' }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">No records found</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    <!-- Add more content as needed -->
+
+    <!-- You can include more data from the 'evenement' entity as needed -->
+</body>
+</html> #}
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des investissements</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            border: 2px solid #333; /* Ajoute une bordure de 2 pixels solide avec la couleur #333 */
+        }
+
+        h1 {
+            color: red; /* Met le texte du titre en rouge */
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        .date {
+            text-align: right;
+            color: #555; /* Couleur du texte de la date */
+        }
+        /* Ajoutez plus de styles au besoin */
+    </style>
+</head>
+<body>
+    <h1>Liste des investissements</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Montant</th>
+                <th>DateDebutInvestissement</th>
+                <th>DureePrevue</th>
+                <th>Details</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for investissement in investissements %}
+                <tr>
+                <td>{{ investissement.montant }}</td>
+                <td>{{ investissement.dateDebutInvestissement ? investissement.dateDebutInvestissement|date('Y-m-d') : '' }}</td>
+                <td>{{ investissement.dureePrevue }}</td>
+                <td>{{ investissement.details }}</td>
+                <td>{{ investissement.status }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">Aucun enregistrement trouvé</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Date de génération du PDF -->
+    <p class="date">Généré le {{ "now"|date("Y-m-d H:i:s") }}</p>
+
+    <!-- Ajoutez plus de contenu au besoin -->
+
+    <!-- Vous pouvez inclure plus de données depuis l'entité 'evenement' au besoin -->
+</body>
+</html>
+

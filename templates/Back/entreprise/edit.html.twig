@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Entreprise
+{% endblock %}
+{%   block up%}
+<div class="header-menu">
+	<a class="menu-link is-active" href="{{ path('app_entreprise_index') }}">Acceuil</a>
+
+</div>
+
+
+{% endblock%}
+
+{% block body %}
+	<h1>Edit Entreprise</h1>
+
+	{{ include('Back/entreprise/_form.html.twig', {'button_label': 'Update'}) }}
+
+	<button class="btn">
+		<a href="{{ path('app_entreprise_index') }}">back to list</a>
+	</button>
+
+	{{ include('Back/entreprise/_delete_form.html.twig') }}
+{% endblock %}

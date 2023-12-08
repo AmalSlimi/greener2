@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Genre Statistics
+{% endblock %}
+
+{% block body %}
+	<h1>Genre Statistics</h1>
+
+	<canvas id="genreChart" width="800" height="400"></canvas>
+
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script>
+		const hommeCounts = {{ hommes|json_encode|raw }};
+const femmeCounts = {{ femmes|json_encode|raw }};
+
+// Process the data to create datasets for Chart.js
+const labels = ['Hommes', 'Femmes'];
+const data = [hommeCounts, femmeCounts];
+
+// Chart.js configuration
+const ctx = document.getElementById('genreChart').getContext('2d');
+new Chart(ctx, {
+type: 'bar',
+data: {
+labels: labels,
+datasets: [
+{
+label: 'Genre Distribution',
+data: data,
+backgroundColor: [
+'rgba(54, 162, 235, 0.5)', 'rgba(255, 99, 132, 0.5)'
+], // Adjust colors as needed
+borderColor: [
+'rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'
+],
+borderWidth: 1
+}
+]
+},
+options: {
+scales: {
+y: {
+beginAtZero: true
+}
+}
+}
+});
+	</script>
+
+
+{% endblock %}

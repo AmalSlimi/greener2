@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block title %}Edit Vehicule{% endblock %}
+{% block body %}
+    <h1>Edit Vehicule</h1>
+    <div class="action_btn">
+        {{ include('Back/Vehicule/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('Back/Vehicule/_delete.html.twig') }}
+    </div>
+    <table>
+        <tr>
+            <td><a href="{{ path('app_vehicule_index') }}"<a href="{{ path('app_vehicule_index') }}"style="display: inline-block; padding: 8px 16px; border: none; border-radius: 4px; transition: all 0.3s ease; text-decoration: none; color: #fff; background-color: #3498db; margin-right: 5px;">back to list</a></td>
+        </tr>
+    </table>
+     
+{% endblock %}

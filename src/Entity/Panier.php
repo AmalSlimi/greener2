@@ -25,11 +25,11 @@ class Panier
 
     #[ORM\OneToMany(mappedBy: 'panier', targetEntity: Commande::class,cascade:["remove"],orphanRemoval:true)]
     private Collection $commande;
-/*
-    #[ORM\ManyToOne(inversedBy: 'paniers', targetEntity: User::class)]
-    #[ORM\JoinColumn(name: 'clientid', referencedColumnName:'id_user')]
-    
-    private ?User $user = null;  */
+
+    /*#[ORM\ManyToOne(inversedBy: 'panier', targetEntity: Panier::class)]
+    #[ORM\JoinColumn(name: 'id_user', referencedColumnName: 'id')]
+    private ?User $user = null;*/
+
 
     #[ORM\Column(type: "integer")]
     private ?int $quantite = null;

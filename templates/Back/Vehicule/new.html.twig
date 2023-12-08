@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Vehicule{% endblock %}
+
+{% block body %}
+    <h1>Create new Vehicule</h1>
+
+    {{ include('Back/Vehicule/_form.html.twig') }}
+    <table>
+        <tr>
+            <td><a href="{{ path('app_vehicule_index') }}"style="display: inline-block; padding: 8px 16px; border: none; border-radius: 4px; transition: all 0.3s ease; text-decoration: none; color: #fff; background-color: #3498db; margin-right: 5px;">back to list</a></td>
+        <tr>
+    </table>
+    
+{% endblock %}

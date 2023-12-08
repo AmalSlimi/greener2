@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evenement{% endblock %}
+{% block  crud %}
+	<div class="main-header">
+		<a class="menu-link-main" href="#">Acceuil admin</a>
+			<div class="header-menu">
+				<a class="main-header-link" href="{{ path('app_evenement_new') }}">Ajouter</a>
+				<a class="main-header-link" href="{{ path('app_evenement_index') }}">Afficher</a>
+				
+			</div>
+	</div>
+{% endblock %}
+{% block body %}
+    <h1>Evenement</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>id</th>
+                <td>{{ evenement.id }}</td>
+            </tr>
+            <tr>
+                <th>Entreprise email</th>
+                <td>{{ evenement.entreprise.email }}</td>
+            </tr>
+            <tr>
+                <th>TitreEvenement</th>
+                <td>{{ evenement.titreEvenement }}</td>
+            </tr>
+            <tr>
+                <th>DateEvenementt</th>
+                <td>{{ evenement.dateEvenementt ? evenement.dateEvenementt|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Qrcode</th>
+                <td>{{ evenement.qrcode }}</td>
+            </tr>
+            <tr>
+                <th>ImageEvenement</th>
+                <td><img src="{{ asset(evenement.imageEvenement) }}" width="80"></img></td>
+                {# <td>{{ evenement.imageEvenement }}</td> #}
+            </tr>
+            <tr>
+                <th>LieuEvenement</th>
+                <td>{{ evenement.lieuEvenement }}</td>
+            </tr>
+            <tr>
+                <th>DescriptionEvenement</th>
+                <td>{{ evenement.descriptionEvenement }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_evenement_index') }}">back to list</a>
+
+    <a href="{{ path('app_evenement_edit', {'id': evenement.id}) }}">edit</a>
+
+    {{ include('evenement/_delete_form.html.twig') }}
+
+
+    <h2>Participants</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <!-- Add more participant details as needed -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for participant in evenement.participants %}
+                <tr>
+                    <td>{{ participant.id }}</td>
+                    <td>{{ participant.email }}</td>
+                    <!-- Add more participant details as needed -->
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

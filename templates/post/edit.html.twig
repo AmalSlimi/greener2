@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Post{% endblock %}
+{% block  crud %}
+	<div class="main-header">
+		<a class="menu-link-main" href="#">Acceuil admin</a>
+			<div class="header-menu">
+				<a class="main-header-link" href="{{ path('app_post_new') }}">Ajouter</a>
+				<a class="main-header-link" href="{{ path('app_post_index') }}">Afficher</a>
+				<a class="main-header-link" href="{{ path('app_commentaires_index') }}">Commentaires</a>
+				<a class="main-header-link" href="{{ path('app_search') }}">Rechercher</a>
+			</div>
+	</div>
+{% endblock %}
+{% block body %}
+    <h1>Edit Post</h1>
+
+    {{ include('post/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_post_index') }}">back to list</a>
+
+    {{ include('post/_delete_form.html.twig') }}
+{% endblock %}

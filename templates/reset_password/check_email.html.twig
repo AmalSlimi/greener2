@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block vid%}
+	<div class="video-bg">
+		<video width="320" height="240" autoplay loop muted>
+			<source src="{{ asset ('images/back.mp4')}}" type="video/mp4">
+			Your browser does not support the video tag.
+		</video>
+	</div>
+{% endblock %}
+{%   block up%}
+
+
+{% endblock%}
+{% block sidebar %}
+{% endblock%}
+{% block  crud %}
+{% endblock%}
+
+
+{% block title %}Password Reset Email Sent
+{% endblock %}
+
+{% block body %}
+	<p>
+		verifier votre mail pour la reset de votre mot de passe        This link will expire in
+		{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+	</p>
+	<p>If you don't receive an email please check your spam folder or
+		<a href="{{ path('app_forgot_password_request') }}">try again</a>.</p>
+{% endblock %}

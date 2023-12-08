@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Evenement{% endblock %}
+{% block  crud %}
+	<div class="main-header">
+		<a class="menu-link-main" href="#">Acceuil admin</a>
+			<div class="header-menu">
+				<a class="main-header-link" href="{{ path('app_evenement_new') }}">Ajouter</a>
+				<a class="main-header-link" href="{{ path('app_evenement_index') }}">Afficher</a>
+				
+			</div>
+	</div>
+{% endblock %}
+{% block body %}
+    <h1>Create new Evenement</h1>
+
+    {{ include('evenement/_form.html.twig') }}
+
+    <a href="{{ path('app_evenement_index') }}">back to list</a>
+{% endblock %}

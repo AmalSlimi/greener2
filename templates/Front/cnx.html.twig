@@ -1,0 +1,58 @@
+<head>
+	<link href="{{ asset('assets/css/cnxuser.css') }}" type="text/css" rel="stylesheet">
+
+</head>
+<div class="container">
+	<div class="welcome">
+		<div class="pinkbox">
+			<div class="signup nodisplay">
+
+				<h1>register</h1>
+				<br>
+				<br>
+				<br>
+				<br>
+				<a href="{{path('app_register')}}">
+					<button class="button submit">cree compte</button>
+				</a>
+			</div>
+			<div class="signin">
+				<h1>sign in</h1>
+				<form class="more-padding" autocomplete="off" method="POST" action="{{ path('app_cnx')}}">
+					<input type="text" name="email" placeholder="votre email">
+					<input type="password" name="mdp" placeholder="mot de passe">
+
+
+					<button type="submit" class="button submit">se connecter</button>
+					<a class="more-padding" href="{{ path('app_forgot_password_request') }}">
+						mot de pass oubliee ?
+
+					</a>
+
+				</form>
+
+			</div>
+		</div>
+		<div class="leftbox">
+			<h2 class="title">
+				<span>FOR</span>Greener<br>INDUSTRY</h2>
+			<p class="desc">for greener
+				<span>economie</span>
+			</p>
+			<img class="flower smaller" src="https://image.ibb.co/d5X6pn/1357d638624297b.jpg" alt="1357d638624297b" border="0">
+			<p class="account">have an account?</p>
+			<button class="button" id="signin">login</button>
+		</div>
+		<div class="rightbox">
+			<h2 class="title">
+				<span>for Greener</span><br>Industry</h2>
+			<p class="desc">for greener
+				<span>economie</span>
+			</p>
+			<img class="flower" src="https://preview.ibb.co/jvu2Un/0057c1c1bab51a0.jpg"/>
+			<p class="account">don't have an account?</p>
+			<button class="button" id="signup">sign up</button>
+		</div>
+	</div>
+</div></div>{% block javascripts %}
+<script src="{{ asset('assets/js/cnxuser.js') }}"></script>{% endblock %}

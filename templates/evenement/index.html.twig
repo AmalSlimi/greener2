@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evenement index{% endblock %}
+{% block  crud %}
+	<div class="main-header">
+		<a class="menu-link-main" href="#">Acceuil admin</a>
+			<div class="header-menu">
+				<a class="main-header-link" href="{{ path('app_evenement_new') }}">Ajouter</a>
+				<a class="main-header-link" href="{{ path('app_evenement_index') }}">Afficher</a>
+				
+			</div>
+	</div>
+{% endblock %}
+{% block body %}
+    <h1 class="mb-4">Evenement Index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Image</th>
+                <th scope="col">Title</th>
+                <th scope="col">Entreprise Email</th>
+                <th scope="col">Date</th>
+                <th scope="col">Code Qr</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for evenement in evenements %}
+                <tr style="color: {{ eventStatus[evenement.id] ? 'red' : 'white' }}">
+                    <td>{{ evenement.id }}</td>
+                    <td><img src="{{ asset(evenement.imageEvenement) }}" width="80"></td>
+                    <td>{{ evenement.titreEvenement }}</td>
+                    <td>{{ evenement.entreprise.email }}</td>
+                    <td>{{ evenement.dateEvenementt ? evenement.dateEvenementt|date('Y-m-d') : '' }}</td>
+                    <td>
+                         {% if evenement.qrcode %}
+                            <img src="{{ qr_code_data_uri(evenement.qrcode) }}" width="100" alt="QR Code">
+                        {% endif %} 
+                    </td>
+                    <td>
+                        {% if is_granted('ROLE_ENTREPRISE') %}
+                            <a href="{{ path('app_evenement_show', {'id': evenement.id}) }}" class="btn btn-primary btn-sm">Show</a>
+                            <a href="{{ path('app_evenement_edit', {'id': evenement.id}) }}" class="btn btn-warning btn-sm">Edit</a>
+                        {% endif %}
+
+                        {% if evenement.entreprise == app.user %}
+                            {# logic for the authenticated user related to the event #}
+                        {% else %}
+                            <form method="post" action="{{ path('app_evenement_participate', {'id': evenement.id}) }}">
+                                <button type="submit">Participer</button>
+                            </form>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">No records found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_evenement_download_pdf') }}" class="btn btn-success btn-sm">Download PDF</a>
+
+    {% if is_granted('ROLE_ENTREPRISE') %}
+        <a href="{{ path('app_evenement_new') }}" class="btn btn-success">Create New</a>
+    {% endif %}
+{% endblock %}

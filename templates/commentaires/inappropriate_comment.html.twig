@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inappropriate Comment{% endblock %}
+{% block  crud %}
+	<div class="main-header">
+		<a class="menu-link-main" href="#">Acceuil admin</a>
+			<div class="header-menu">
+				<a class="main-header-link" href="{{ path('app_post_new') }}">Ajouter</a>
+				<a class="main-header-link" href="{{ path('app_post_index') }}">Afficher</a>
+				<a class="main-header-link" href="{{ path('app_commentaires_index') }}">Commentaires</a>
+				<a class="main-header-link" href="{{ path('app_search') }}">Rechercher</a>
+			</div>
+	</div>
+{% endblock %}
+{% block body %}
+    <h1>Inappropriate Comment</h1>
+    <p>This comment contains inappropriate content and cannot be approved.</p>
+    <p>Please modify it before submitting.</p>
+{% endblock %}

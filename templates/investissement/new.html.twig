@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Investissement{% endblock %}
+{% block  crud %}
+	<div class="main-header">
+		<a class="menu-link-main" href="#">Acceuil admin</a>
+			<div class="header-menu">
+				<a class="main-header-link" href="{{ path('app_investissement_new') }}">Ajouter</a>
+				<a class="main-header-link" href="{{ path('app_investissement_index') }}">Afficher</a>
+				
+			</div>
+	</div>
+{% endblock %}
+{% block body %}
+    <h1>Create new Investissement</h1>
+
+    {{ include('investissement/_form.html.twig') }}
+
+    <a href="{{ path('app_investissement_index') }}">back to list</a>
+{% endblock %}

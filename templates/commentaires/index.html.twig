@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commentaires index{% endblock %}
+{% block  crud %}
+	<div class="main-header">
+		<a class="menu-link-main" href="#">Acceuil admin</a>
+			<div class="header-menu">
+				<a class="main-header-link" href="{{ path('app_post_new') }}">Ajouter</a>
+				<a class="main-header-link" href="{{ path('app_post_index') }}">Afficher</a>
+				<a class="main-header-link" href="{{ path('app_commentaires_index') }}">Commentaires</a>
+				<a class="main-header-link" href="{{ path('app_search') }}">Rechercher</a>
+			</div>
+	</div>
+{% endblock %}
+{% block body %}
+    <h1>Commentaires index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                {#<th>IdCommentaire</th>
+                <th>IdUser</th>#}
+                <th>IdPost</th>
+                <th>Contenu</th>
+                {#<th>Statut</th>#}
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commentaire in commentaires %}
+            <tr>
+                {#<td>{{ commentaire.idCommentaire }}</td>
+                <td>{{ commentaire.idUser }}</td>#}
+                <td>{{ commentaire.idPost }}</td>
+                <td>{{ commentaire.contenu }}</td>
+                {#<td>{{ commentaire.statut }}</td>#}
+                <td>
+                    <a href="{{ path('app_commentaires_show', {'idCommentaire': commentaire.idCommentaire}) }}">show</a>
+                    <a href="{{ path('app_commentaires_edit', {'idCommentaire': commentaire.idCommentaire}) }}">edit</a>
+                    <a href="{{ path('app_commentaires_delete', {'idCommentaire': commentaire.idCommentaire}) }}">delete</a>
+                
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {#<a href="{{ path('app_commentaires_new') }}">Create new</a>#}
+{% endblock %}

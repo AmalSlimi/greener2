@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Entreprise
+{% endblock %}
+{%   block up%}
+	<div class="header-menu">
+		<a class="menu-link is-active" href="{{ path('app_entreprise_index') }}">Acceuil</a>
+
+	</div>
+{%  endblock %}
+{% block  crud %}
+	<div class="main-header">
+		<a class="menu-link-main" href="{{ path('app_entreprise_index') }}">Acceuil admin</a>
+		<div class="header-menu">
+			<a class="main-header-link" href="{{ path('app_entreprise_new') }}">Ajouter</a>
+			<a class="main-header-link" href="{{ path('app_entreprise_index') }}">Afficher</a>
+		</div>
+	</div>
+{% endblock %}
+
+{% block body %}
+	<h1>Entreprise</h1>
+
+	<table class="table">
+		<tbody>
+
+			<tr>
+				<th>Nom</th>
+				<td>{{ entreprise.nom }}</td>
+			</tr>
+			<tr>
+				<th>Prenom</th>
+				<td>{{ entreprise.prenom }}</td>
+			</tr>
+			<tr>
+				<th>Pdp</th>
+				<td>{{ entreprise.pdp }}</td>
+			</tr>
+			<tr>
+				<th>Num</th>
+				<td>{{ entreprise.num }}</td>
+			</tr>
+			<tr>
+				<th>Mail</th>
+				<td>{{ entreprise.mail }}</td>
+			</tr>
+			<tr>
+				<th>Mdp1</th>
+				<td>{{ entreprise.mdp1 }}</td>
+			</tr>
+			<tr>
+				<th>Role</th>
+				<td>{{ entreprise.role }}</td>
+			</tr>
+			<tr>
+				<th>Adresse</th>
+				<td>{{ entreprise.adresse }}</td>
+			</tr>
+			<tr>
+				<th>Genre</th>
+				<td>{{ entreprise.genre }}</td>
+			</tr>
+			<tr>
+				<th>Logo</th>
+				<td>{{ entreprise.logo }}</td>
+			</tr>
+			<tr>
+				<th>NomEntreprise</th>
+				<td>{{ entreprise.nomEntreprise }}</td>
+			</tr>
+			<tr>
+				<th>Secteur</th>
+				<td>{{ entreprise.secteur }}</td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td>{{ entreprise.description }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<button class="btn">
+		<a href="{{ path('app_entreprise_index') }}">back to list</a>
+	</button>
+
+	<button class="btn">
+		<a href="{{ path('app_entreprise_edit', {'id': entreprise.id}) }}">edit</a>
+	</button>
+
+	{{ include('Back/entreprise/_delete_form.html.twig') }}
+{% endblock %}

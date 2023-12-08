@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block title %}Edit Energie{% endblock %}
+{% block body %}
+    <h1>Edit Energie</h1>
+    <td>{{ include('Back/Energie/_form.html.twig', {'button_label': 'Update'}) }}</td>
+    <table>
+        <tr>
+            <td><a href="{{ path('app_energie_index') }}"style="display: inline-block; padding: 8px 16px; border: none; border-radius: 4px; transition: all 0.3s ease; text-decoration: none; color: #fff; background-color: #3498db; margin-right: 5px;">back to list</a></td>
+            <td>{{ include('Back/Energie/_delete.html.twig') }}</td>
+        </tr>
+    </table>
+{% endblock %}

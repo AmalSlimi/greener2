@@ -1,0 +1,78 @@
+<head>
+	<title>
+
+		{% block title %}
+			bienvenue -  for greener industry
+		{% endblock %}
+	</title>
+	<link href="{{ asset('assets/css/register.css') }}" type="text/css" rel="stylesheet">
+
+</head>
+<!-- multistep form -->
+<form
+	id="msform" method="post" action="{{ path('app_register')}}">
+	<!-- progressbar -->
+	<ul id="progressbar">
+		<li class="active">Etape 1
+		</li>
+		<li>Social & geo Profile</li>
+		<li>
+			Details personelle
+		</li>
+	</ul>
+	<!-- fieldsets -->
+	<fieldset>
+		<h2 class="fs-title">
+			cree compte
+		</h2>
+		<h3 class="fs-subtitle">Etape  1</h3>
+		<input type="text" name="nom" placeholder="votre nom"/>
+		<input type="text" name="prenom" placeholder="votre prenom"/>
+		<input type="text" name="num" placeholder="telephone"/>
+		<br>
+		<br>
+		<div class="radio-block">
+			<label><input type="radio" name="genre" value="homme">
+				Homme</label>
+			<label><input type="radio" name="genre" value="femme">
+				Femme</label>
+		</div>
+		<br>
+		<br>
+		<input type="button" name="next" class="next action-button" value="Next"/>
+	</fieldset>
+	<fieldset>
+		<h2 class="fs-title">Social & geo  Profiles</h2>
+		<h3 class="fs-subtitle">votre presence geo et virtuelle</h3>
+		<input type="text" name="adresse" placeholder="adresse"/>
+		<input type="file" name="pdp" placeholder="image"/>
+		<br>
+		<br>
+		<div>
+			<select name="role" required>
+				<option value="client">Client</option>
+				<option value="agent">Agent</option>
+				<option value="investisseur">Investisseur</option>
+			</select>
+		</div>
+
+
+		<input type="button" name="previous" class="previous action-button" value="Previous"/>
+		<input type="button" name="next" class="next action-button" value="Next"/>
+	</fieldset>
+	<fieldset>
+		<h2 class="fs-title">
+			Details personelle</h2>
+		<h3 class="fs-subtitle">We will never sell it</h3>
+		<input type="text" name="mail" placeholder="foulen.ben.falten@exmple.org"/>
+		<input type="password" name="pass" placeholder="mot de passe"/>
+		<input type="password" name="cpass" placeholder="Confirmer Password"/>
+
+		<input type="button" name="previous" class="previous action-button" value="Previous"/>
+	</fieldset>
+	<button class="btn" type="submit">Register</button>
+
+</form>
+{% block javascripts %}
+	<script src="{{ asset('assets/js/register.js') }}"></script>
+{% endblock %}

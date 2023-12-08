@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vehicule index{% endblock %}
+
+{% block body %}
+    <h1>Vehicule index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Libellet</th>
+                <th>Marque</th>
+                <th>Pollution Par Km</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for V in Vehicules %}
+            <tr>
+                <td>{{V.LibelletVehicule}}</td>
+                <td>{{V.Marque}}</td>
+                <td>{{V.PollutioParKm}}</td>
+                <td>
+                    <a href="{{ path('app_vehicule_edit', {'idVehicule': V.idVehicule}) }}"style="display: inline-block; padding: 8px 16px; border: none; border-radius: 4px; transition: all 0.3s ease; text-decoration: none; color: #fff; background-color: #3498db; margin-right: 5px;">Edit/Delete</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="15">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <table>
+        <tr>
+            <td><a href="{{ path('app_vehicule_new') }}"style="display: inline-block; padding: 8px 16px; border: none; border-radius: 4px; transition: all 0.3s ease; text-decoration: none; color: #fff; background-color: #3498db; margin-right: 5px;">Create new</a></td>
+        </tr>
+    </table>
+    
+{% endblock %}

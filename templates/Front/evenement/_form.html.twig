@@ -1,0 +1,20 @@
+{{ form_start(form) }}
+<div class=".some_class">
+        {{ form_errors(form) }}
+    </div>
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    {% if form_errors(form) %}
+    
+{% endif %}
+{{ form_end(form) }}
+
+
+<style type="text/css">
+
+li {
+    color: red;
+}
+
+</style>
+

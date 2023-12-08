@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Investissement index{% endblock %}
+{% block  crud %}
+	<div class="main-header">
+		<a class="menu-link-main" href="#">Acceuil admin</a>
+			<div class="header-menu">
+				<a class="main-header-link" href="{{ path('app_investissement_new') }}">Ajouter</a>
+				<a class="main-header-link" href="{{ path('app_investissement_index') }}">Afficher</a>
+				
+			</div>
+	</div>
+{% endblock %}
+{% block body %}
+    <h1>Investissement index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdInvestissement</th>
+                <th>IdInvestisseur</th>
+                <th>IdEntreprise</th>
+                <th>Montant</th>
+                <th>DateDebutInvestissement</th>
+                <th>DureePrevue</th>
+                <th>Details</th>
+                <th>Status</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for investissement in investissements %}
+            <tr>
+                <td>{{ investissement.idInvestissement }}</td>
+                <td>{{ investissement.idInvestisseur }}</td>
+                <td>{{ investissement.idEntreprise }}</td>
+                <td>{{ investissement.montant }}</td>
+                <td>{{ investissement.dateDebutInvestissement ? investissement.dateDebutInvestissement|date('Y-m-d') : '' }}</td>
+                <td>{{ investissement.dureePrevue }}</td>
+                <td>{{ investissement.details }}</td>
+                <td>{{ investissement.status }}</td>
+                <td>
+                    <a href="{{ path('app_investissement_show', {'idInvestissement': investissement.idInvestissement}) }}">show</a>
+                    <a href="{{ path('app_investissement_edit', {'idInvestissement': investissement.idInvestissement}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+     <a href="{{ path('app_investissement_download_pdf') }}"
+                                class="btn btn-success btn-sm">Download PDF</a>
+
+    <a href="{{ path('app_investissement_new') }}">Create new</a>
+{% endblock %}

@@ -54,6 +54,11 @@ class Commande
     #[ORM\Column(type: "integer")]
     private ?int $panierid = null;
 
+    /*#[ORM\ManyToOne(inversedBy: 'commande', targetEntity: Commande::class)]
+    #[ORM\JoinColumn(name: 'id_user', referencedColumnName: 'id')]
+    private ?User $user = null;*/
+
+    
     public function getCommandeId(): ?int
     {
         return $this->commandeId;

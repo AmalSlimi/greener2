@@ -1,7 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Commande{% endblock %}
-
+{% block  crud %}
+	<div class="main-header">
+		<a class="menu-link-main" href="#">Acceuil admin</a>
+			<div class="header-menu">
+				<a class="main-header-link" href="{{ path('app_panier_new') }}">Ajouter </a>
+				<a class="main-header-link" href="{{ path('app_commande_index') }}">Afficher </a>
+			</div>
+	</div>
+{% endblock %}
 {% block body %}
     <h1>Commande</h1>
 

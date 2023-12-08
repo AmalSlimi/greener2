@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Role Statistics
+{% endblock %}
+
+{% block body %}
+	<center>
+		<h1>la Distribution des Roles
+		</h1>
+
+		<div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+	</center>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+		google.charts.load("current", {packages: ["corechart"]});
+google.charts.setOnLoadCallback(drawChart);
+
+
+function drawChart() {
+var data = google.visualization.arrayToDataTable([
+[
+'Role', 'Count'
+],
+[
+'Client', {{ numberOfClients }}
+],
+[
+'Investisseur', {{ numberOfInvestors }}
+],
+[
+'Agent entreprise', {{ numberOfCompanyAgents }}
+]
+]);
+
+var options = {
+title: 'la distribution des role dans l application',
+is3D: true,
+pieHole: 0.4,
+animation: {
+duration: 5000,
+easing: 'inAndOut',
+startup: true
+}
+};
+
+var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+chart.draw(data, options);
+
+chart.animate();
+}
+	</script>
+
+{% endblock %}

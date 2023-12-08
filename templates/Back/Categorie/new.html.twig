@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Categorie{% endblock %}
+
+{% block body %}
+    <h1>Create new Categorie</h1>
+
+    {{ include('Back/Categorie/_form.html.twig') }}
+    <table class="table">
+        <tr>
+            <th><a href="{{ path('app_categorie_index') }}"style="display: inline-block; padding: 8px 16px; border: none; border-radius: 4px; transition: all 0.3s ease; text-decoration: none; color: #fff; background-color: #3498db; margin-right: 5px;">Back to list</a></th>
+        </tr>
+    </table>
+    
+{% endblock %}
